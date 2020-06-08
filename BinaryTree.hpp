@@ -51,6 +51,7 @@ public:
 		return this->root;
 	};
 
+	// Проверка на наличие элемента в дереве
 	bool toCheck(T item) {
 		Node<T>* temp;
 		temp = this->root;
@@ -72,6 +73,7 @@ public:
 		}
 	};
 
+	// Поиск узла по значению с заданного узла
 	Node<T>* findNode(Node<T>* Node, T item) {
 		if (this->root == nullptr) {
 			throw std::exception("ERROR: Tree is EMPTY");
@@ -90,10 +92,12 @@ public:
 		}
 	};
 
+	// Поиск узла с заданным значением во всём дереве
 	Node<T>* findNode(T item) {
 		return findNode(this->root, item);
 	};
 
+	// map для поддерева, начиная с заданного узла
 	void map(Node<T>* Node, T (*foo)(T)) {
 		Node->item = foo(Node->item);
 
@@ -105,6 +109,7 @@ public:
 		}
 	};
 
+	// map для всего деева
 	void map(T(*foo)(T)) {
 		if (this->root == nullptr) {
 			std::cout << "Tree is EMPTY" << std::endl;;
@@ -114,6 +119,7 @@ public:
 		}
 	};
 
+	// "Высота" поддерева, длина самой длинной ветви начиная с заданного узла
 	static int getHeight(Node<T>* Node) 
 	{
 		int L = 0;
@@ -145,6 +151,7 @@ public:
 		}
 	};
 
+	// "Высота" всего дерева
 	int getHeight() {
 		if (this->root == nullptr) {
 			throw std::exception("ERROR: Tree is EMPTY");
@@ -153,6 +160,7 @@ public:
 		return (getHeight(this->root));
 	};
 
+	// Получение поддерева по элементу
 	BinaryTree<T>* getSubTree(T item) {
 		Node<T>* temp = this->findNode(item);
 		BinaryTree<T>* subTree = new BinaryTree<T>(temp);
@@ -160,6 +168,7 @@ public:
 		return subTree;
 	};
 
+	// Проверка деревьев на равенство
 	bool isEqual(BinaryTree<T>* Tree) {
 		if ((this->getRoot() == nullptr && Tree->getRoot() != nullptr) || 
 			(this->getRoot() != nullptr && Tree->getRoot() == nullptr)) {
@@ -200,6 +209,7 @@ public:
 		return out;
 	};
 
+	// Проверка на вхождение поддерева в исходной дерево
 	bool toCheckSubtree(BinaryTree<T>* subTree) {
 		if (subTree->getRoot() == nullptr && this->getRoot() != nullptr) {
 			return false;
@@ -215,6 +225,7 @@ public:
 		}
 	};
 
+	// Прошивка с заданного узла
 	static Sequence<Node<T>*>* Chain(Node<T>* node, std::string order)	{
 		Sequence<Node<T>*>* list = nullptr;
 		Node<T>** array;
@@ -261,10 +272,12 @@ public:
 		return list;
 	};
 
+	// Прошивка всего дерева
 	Sequence<Node<T>*>* Chain(std::string order) {
 		return this->Chain(this->root, order);
 	};
 
+	// Вставка элемента
 	void toInsert(T item) {
 		if (this->toCheck(item)) {
 			return;
@@ -297,6 +310,7 @@ public:
 		}
 	};
 
+	// Удаление элемента
 	bool removeNode(Node<T>* node, T item) {
 		if (node == nullptr) {
 			return false;
@@ -409,10 +423,12 @@ public:
 		}
 	};
 
+	// Удаление узла по элементу
 	bool removeNode(T item) {
 		return removeNode(this->root, item);
 	};
 
+	// Сохранение дерева по обходу в строку
 	std::string toString(std::string order) {
 		std::string res;
 		Sequence<Node<T>*>* chainTree = this->Chain(order);
@@ -431,6 +447,7 @@ public:
 		return res;
 	};
 
+	// reduce
 	T reduce(T(*foo)(T, T), T startItem, std::string order) {
 		if (this->root == nullptr) {
 			throw std::exception("ERROR: Tree is EMPTY");
@@ -449,6 +466,7 @@ public:
 		return out;
 	};
 
+	// Вывод дерева
 	void printTree(Node<T>* node, int level)
 	{
 		HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
