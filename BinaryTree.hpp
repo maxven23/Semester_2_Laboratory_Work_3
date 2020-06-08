@@ -22,10 +22,6 @@ public:
 		T Get() {
 			return this->item;
 		}
-
-		void printItem() {
-			cout << this->item;
-		}
 	};
 
 private:
