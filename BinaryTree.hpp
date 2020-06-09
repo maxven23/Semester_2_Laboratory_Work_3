@@ -224,7 +224,6 @@ public:
 	// Прошивка с заданного узла
 	static Sequence<Node<T>*>* Chain(Node<T>* node, std::string order)	{
 		Sequence<Node<T>*>* list = nullptr;
-		Node<T>** array;
 		for (size_t i = 0; i < order.length(); i++)	{
 			switch (order[i]) {
 
@@ -459,6 +458,22 @@ public:
 				out = foo(ChainTree->Get(i)->Get(), out);
 			}
 		}
+		return out;
+	};
+
+	// where
+	Sequence<Node<T>*>* where(bool(*foo)(T), std::string order) {
+		if (this->getRoot() == nullptr) {
+			throw std::exception("ERROR: Tree is EMPTY");
+		}
+		Sequence<Node<T>*>* list = this->Chain(order);
+		Sequence<Node<T>*>* out = new Sequence<Node<T>*>();
+		for (size_t i = 0; i < list->GetSize(); i++) {
+			if (foo(list->Get(i)->Get()) == true) {
+				out->Prepend(list->Get(i));
+			}
+		}
+		delete list;
 		return out;
 	};
 
