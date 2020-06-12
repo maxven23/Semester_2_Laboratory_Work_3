@@ -1,4 +1,4 @@
-#pragma once
+п»ї#pragma once
 #include "Headers.hpp"
 #include <stdio.h>
 #include <Windows.h>
@@ -24,16 +24,16 @@ public:
 		}
 	};
 
-private:
+public:
 	Node<T>* root;
 
 public:
-	//----------Конструкторы----------//
+	//----------РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂС‹----------//
 	BinaryTree(T item) {
 		this->root = new Node<T>(item);
 	};
 
-	BinaryTree(Node* root) {
+	BinaryTree(Node<T>* root) {
 		this->root = root;
 	};
 
@@ -41,13 +41,13 @@ public:
 		this->root = nullptr;
 	};
 
-	//-------------Методы--------------//
+	//-------------РњРµС‚РѕРґС‹--------------//
 
 	Node<T>* getRoot() {
 		return this->root;
 	};
 
-	// Проверка на наличие элемента в дереве
+	// РџСЂРѕРІРµСЂРєР° РЅР° РЅР°Р»РёС‡РёРµ СЌР»РµРјРµРЅС‚Р° РІ РґРµСЂРµРІРµ
 	bool toCheck(T item) {
 		Node<T>* temp;
 		temp = this->root;
@@ -69,7 +69,7 @@ public:
 		}
 	};
 
-	// Поиск узла по значению с заданного узла
+	// РџРѕРёСЃРє СѓР·Р»Р° РїРѕ Р·РЅР°С‡РµРЅРёСЋ СЃ Р·Р°РґР°РЅРЅРѕРіРѕ СѓР·Р»Р°
 	Node<T>* findNode(Node<T>* Node, T item) {
 		if (this->root == nullptr) {
 			throw std::exception("ERROR: Tree is EMPTY");
@@ -88,12 +88,12 @@ public:
 		}
 	};
 
-	// Поиск узла с заданным значением во всём дереве
+	// РџРѕРёСЃРє СѓР·Р»Р° СЃ Р·Р°РґР°РЅРЅС‹Рј Р·РЅР°С‡РµРЅРёРµРј РІРѕ РІСЃС‘Рј РґРµСЂРµРІРµ
 	Node<T>* findNode(T item) {
 		return findNode(this->root, item);
 	};
 
-	// map для поддерева, начиная с заданного узла
+	// map РґР»СЏ РїРѕРґРґРµСЂРµРІР°, РЅР°С‡РёРЅР°СЏ СЃ Р·Р°РґР°РЅРЅРѕРіРѕ СѓР·Р»Р°
 	void map(Node<T>* Node, T (*foo)(T)) {
 		Node->item = foo(Node->item);
 
@@ -105,7 +105,7 @@ public:
 		}
 	};
 
-	// map для всего деева
+	// map РґР»СЏ РІСЃРµРіРѕ РґРµРµРІР°
 	void map(T(*foo)(T)) {
 		if (this->root == nullptr) {
 			std::cout << "Tree is EMPTY" << std::endl;;
@@ -115,7 +115,7 @@ public:
 		}
 	};
 
-	// "Высота" поддерева, длина самой длинной ветви начиная с заданного узла
+	// "Р’С‹СЃРѕС‚Р°" РїРѕРґРґРµСЂРµРІР°, РґР»РёРЅР° СЃР°РјРѕР№ РґР»РёРЅРЅРѕР№ РІРµС‚РІРё РЅР°С‡РёРЅР°СЏ СЃ Р·Р°РґР°РЅРЅРѕРіРѕ СѓР·Р»Р°
 	static int getHeight(Node<T>* Node) 
 	{
 		int L = 0;
@@ -147,7 +147,7 @@ public:
 		}
 	};
 
-	// "Высота" всего дерева
+	// "Р’С‹СЃРѕС‚Р°" РІСЃРµРіРѕ РґРµСЂРµРІР°
 	int getHeight() {
 		if (this->root == nullptr) {
 			throw std::exception("ERROR: Tree is EMPTY");
@@ -156,7 +156,7 @@ public:
 		return (getHeight(this->root));
 	};
 
-	// Получение поддерева по элементу
+	// РџРѕР»СѓС‡РµРЅРёРµ РїРѕРґРґРµСЂРµРІР° РїРѕ СЌР»РµРјРµРЅС‚Сѓ
 	BinaryTree<T>* getSubTree(T item) {
 		Node<T>* temp = this->findNode(item);
 		BinaryTree<T>* subTree = new BinaryTree<T>(temp);
@@ -164,7 +164,7 @@ public:
 		return subTree;
 	};
 
-	// Проверка деревьев на равенство
+	// РџСЂРѕРІРµСЂРєР° РґРµСЂРµРІСЊРµРІ РЅР° СЂР°РІРµРЅСЃС‚РІРѕ
 	bool isEqual(BinaryTree<T>* Tree) {
 		if ((this->getRoot() == nullptr && Tree->getRoot() != nullptr) || 
 			(this->getRoot() != nullptr && Tree->getRoot() == nullptr)) {
@@ -205,7 +205,7 @@ public:
 		return out;
 	};
 
-	// Проверка на вхождение поддерева в исходной дерево
+	// РџСЂРѕРІРµСЂРєР° РЅР° РІС…РѕР¶РґРµРЅРёРµ РїРѕРґРґРµСЂРµРІР° РІ РёСЃС…РѕРґРЅРѕР№ РґРµСЂРµРІРѕ
 	bool toCheckSubtree(BinaryTree<T>* subTree) {
 		if (subTree->getRoot() == nullptr && this->getRoot() != nullptr) {
 			return false;
@@ -221,9 +221,10 @@ public:
 		}
 	};
 
-	// Прошивка с заданного узла
+	// РџСЂРѕС€РёРІРєР° СЃ Р·Р°РґР°РЅРЅРѕРіРѕ СѓР·Р»Р°
 	static Sequence<Node<T>*>* Chain(Node<T>* node, std::string order)	{
 		Sequence<Node<T>*>* list = nullptr;
+
 		for (size_t i = 0; i < order.length(); i++)	{
 			switch (order[i]) {
 
@@ -244,7 +245,7 @@ public:
 			case 'R':
 				if (node->right != nullptr) {
 					if (list == nullptr) {
-						list = Chain(Node->right, order);
+						list = Chain(node->right, order);
 					}
 					else {
 						list = list->Concat(Chain(node->right, order));
@@ -267,12 +268,109 @@ public:
 		return list;
 	};
 
-	// Прошивка всего дерева
+	// РџСЂРѕС€РёРІРєР° РІСЃРµРіРѕ РґРµСЂРµРІР°
 	Sequence<Node<T>*>* Chain(std::string order) {
 		return this->Chain(this->root, order);
 	};
 
-	// Вставка элемента
+	
+	//---------------------------Р‘Р›РћРљ-Р‘РђР›РђРќРЎРР РћР’РљР------------------------------------
+	// Р‘Р°Р»Р°РЅСЃРёСЂРѕРІРєР° DayвЂ“StoutвЂ“Warren
+	void DSW() {
+		if (nullptr != root) {
+			createBackbone();
+			createBalancedBT();
+		}
+	};
+
+	void createBackbone() {
+		Node<T>* grandParent = nullptr;
+		Node<T>* parent = root;
+		Node<T>* leftChild;
+
+		while (nullptr != parent) {
+			leftChild = parent->left;
+			if (nullptr != leftChild) {
+				grandParent = rotateRight(grandParent, parent, leftChild);
+				parent = leftChild;
+			}
+			else {
+				grandParent = parent;
+				parent = parent->right;
+			}
+		}
+	};
+
+	Node<T>* rotateRight(Node<T>* grandParent, Node<T>* parent, Node<T>* leftChild) {
+		if (nullptr != grandParent) {
+			grandParent->right = leftChild;
+		}
+		else {
+			root = leftChild;
+		}
+		parent->left = leftChild->right;
+		leftChild->right = parent;
+		return grandParent;
+	};
+
+	void createBalancedBT() {
+		int n = 0;
+		for (Node<T>* tmp = root; tmp != nullptr; tmp = tmp->right) {
+			n++;
+		}
+
+		int m = greatestPowerOf2LessThanN(n + 1) - 1;
+		makeRotations(n - m);
+
+		while (m > 1) {
+			makeRotations(m /= 2);
+		}
+	};
+
+	int greatestPowerOf2LessThanN(int n) {
+		int x = MSB(n);
+		return (1 << x);
+	};
+
+	int MSB(int n) {
+		int ndx = 0;
+		while (1 < n) {
+			n = (n >> 1);
+			ndx++;
+		}
+		return ndx;
+	};
+
+	void makeRotations(int bound) {
+		Node<T>* grandParent = nullptr;
+		Node<T>* parent = root;
+		Node<T>* child = root->right;
+		for (; bound > 0; bound--) {
+			if (child != nullptr && child->right != nullptr) {
+				rotateLeft(grandParent, parent, child);
+				grandParent = child;
+				parent = grandParent->right;
+				child = parent->right;
+			}
+			else {
+				break;
+			}
+		}
+	};
+
+	void rotateLeft(Node<T>* grandParent, Node<T>* parent, Node<T>* rightChild) {
+		if (nullptr != grandParent) {
+			grandParent->right = rightChild;
+		}
+		else {
+			root = rightChild;
+		}
+		parent->right = rightChild->left;
+		rightChild->left = parent;
+	};
+	//---------------------------------------------------------------------------
+
+	// Р’СЃС‚Р°РІРєР° СЌР»РµРјРµРЅС‚Р°
 	void toInsert(T item) {
 		if (this->toCheck(item)) {
 			return;
@@ -305,7 +403,7 @@ public:
 		}
 	};
 
-	// Удаление элемента
+	// РЈРґР°Р»РµРЅРёРµ СЌР»РµРјРµРЅС‚Р°
 	bool removeNode(Node<T>* node, T item) {
 		if (node == nullptr) {
 			return false;
@@ -418,12 +516,12 @@ public:
 		}
 	};
 
-	// Удаление узла по элементу
+	// РЈРґР°Р»РµРЅРёРµ СѓР·Р»Р° РїРѕ СЌР»РµРјРµРЅС‚Сѓ
 	bool removeNode(T item) {
 		return removeNode(this->root, item);
 	};
 
-	// Сохранение дерева по обходу в строку
+	// РЎРѕС…СЂР°РЅРµРЅРёРµ РґРµСЂРµРІР° РїРѕ РѕР±С…РѕРґСѓ РІ СЃС‚СЂРѕРєСѓ
 	std::string toString(std::string order) {
 		std::string res;
 		Sequence<Node<T>*>* chainTree = this->Chain(order);
@@ -477,7 +575,7 @@ public:
 		return out;
 	};
 
-	// Вывод дерева
+	// Р’С‹РІРѕРґ РґРµСЂРµРІР°
 	void printTree(Node<T>* node, int level)
 	{
 		HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
