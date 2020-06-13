@@ -1,31 +1,62 @@
 #include <iostream>
 #include "BinaryTree.hpp"
+#include "Tests.hpp"
+#include "Menu.hpp"
 
 using namespace std;
 
 int main(void) {
-	string string;
+	bool start = false;
+	int ISTART = 0;
 
-	BinaryTree<int>* tree;
-	tree = new BinaryTree<int>();
-	for (size_t i = 4; i > 0; i--)
-	{
-		tree->toInsert(rand() % 100);
+	
+	while (!start) {
+		system("cls");
+		cout << "------------------START-MENU------------------" << endl;
+		cout << endl;
+		cout << "1. Create a new Tree" << endl;
+		cout << "2. Make Tests" << endl;
+		cout << "3. Exit" << endl;
+		cout << endl;
+		cout << "----------------------------------------------" << endl;
+		cout << endl;
+		cin >> ISTART;
+
+		if (ISTART == 1) {
+			bool typed = false;
+			int TYPE = 0;
+
+			while (!typed) {
+				system("cls");
+
+				cout << "Choose TYPE of DATA:" << endl;
+				cout << endl;
+				cout << "1. Integer numbers" << endl;
+				cout << "2. Real numbers" << endl;
+				cout << endl;
+				cout << "3. Cancel" << endl;
+				cout << endl;
+				
+				cin >> TYPE;
+				if (TYPE == 1) {
+					Menu<int>();
+				}
+				else if (TYPE == 2) {
+					Menu<double>();
+				}
+				else if (TYPE == 3) {
+					typed = true;
+				}
+			}
+		}
+		else if (ISTART == 2) {
+			test();
+		}
+		else if (ISTART == 3) {
+			exit(1);
+		}
 	}
 
 
-	tree->toInsert(100);
-	tree->toInsert(150);
-	tree->toInsert(250);
-	tree->toInsert(125);
-	tree->toInsert(112);
-	tree->toInsert(80);
-	tree->printTree(tree->getRoot(), tree->getHeight());
-
-	//tree->DSW();
-	//cout << endl << endl;
-	//tree->printTree(tree->getRoot(), tree->getHeight());
-
-	//cout << endl << endl << "toString(\"LNR\"): " << tree->toString("LNR");
 	return 0;
 }
