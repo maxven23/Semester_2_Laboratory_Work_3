@@ -50,7 +50,9 @@ int main(void) {
 			}
 		}
 		else if (ISTART == 2) {
-			test();
+			test<int>();
+			
+			pressAnyButton();
 		}
 		else if (ISTART == 3) {
 			exit(1);

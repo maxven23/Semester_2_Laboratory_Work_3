@@ -54,10 +54,10 @@ public:
 
 		while (temp != nullptr) {
 			if (temp->Get() > item) {
-				temp = temp->right;
+				temp = temp->left;
 			}
 			else if (temp->Get() < item) {
-				temp = temp->left;
+				temp = temp->right;
 			}
 			else {
 				return true;
@@ -556,16 +556,17 @@ public:
 				out = foo(ChainTree->Get(i)->Get(), out);
 			}
 		}
+		delete ChainTree;
 		return out;
 	};
 
 	// where
-	Sequence<Node<T>*>* where(bool(*foo)(T), std::string order) {
+	Sequence<Node<T>*>* Where(bool(*foo)(T), std::string order) {
 		if (this->getRoot() == nullptr) {
 			throw std::exception("ERROR: Tree is EMPTY");
 		}
 		Sequence<Node<T>*>* list = this->Chain(order);
-		Sequence<Node<T>*>* out = new Sequence<Node<T>*>();
+		Sequence<Node<T>*>* out = new ListSequence<Node<T>*>();
 		for (size_t i = 0; i < list->GetSize(); i++) {
 			if (foo(list->Get(i)->Get()) == true) {
 				out->Prepend(list->Get(i));
@@ -589,5 +590,9 @@ public:
 			std::cout << node->Get() << std::endl;
 			printTree(node->right, level + 1);
 		}
+	};
+
+	void printTree() {
+		this->printTree(this->getRoot(), this->getHeight());
 	};
 };

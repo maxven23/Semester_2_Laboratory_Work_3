@@ -38,7 +38,7 @@ void makeDes(BinaryTree<T>* Tree, int choose) {
 			cout << "FAILED: Tree is EMPTY" << endl;
 		}
 		else {
-			Tree->printTree(Tree->getRoot(), Tree->getHeight());
+			Tree->printTree();
 		}
 		cout << endl;
 		pressAnyButton();
