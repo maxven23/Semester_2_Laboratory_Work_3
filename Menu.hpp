@@ -79,11 +79,9 @@ void makeDes(BinaryTree<T>* Tree, int choose) {
 		cout << endl;
 		cin >> elem;
 
-		if (Tree->toCheck(elem)) {
+		if (Tree->removeNode(elem)) {
 			system("cls");
-			Tree->removeNode(elem);
-			cout << "Element '" << elem << "' was deleted" << endl;
-			cout << "No such element in the Tree" << endl;
+			cout << "Element '" << elem << "' was deleted successfully" << endl;
 		}
 		else {
 			system("cls");
@@ -100,6 +98,8 @@ void makeDes(BinaryTree<T>* Tree, int choose) {
 	{
 		system("cls");
 
+
+
 		pressAnyButton();
 	}
 	break;
@@ -108,6 +108,8 @@ void makeDes(BinaryTree<T>* Tree, int choose) {
 	case 5:
 	{
 		system("cls");
+
+
 
 		pressAnyButton();
 	}
