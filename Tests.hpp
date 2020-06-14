@@ -2,6 +2,7 @@
 #include "Headers.hpp"
 #include "BinaryTree.hpp"
 
+
 template <typename T> 
 bool biggerZero(T first) {
 	if (first > 0) return true;
@@ -30,6 +31,7 @@ void test() {
 	}
 	Tree->printTree();
 	cout << endl;
+
 	cout << "\\------------------------------------------------------------/" << endl;
 	cout << "==============================================================" << endl;
 	cout << "/--------------------------BALANCED--------------------------\\" << endl;
@@ -60,9 +62,11 @@ void test() {
 	cout << endl;
 
 	cout << "LNR: " << Tree->toString("LNR") << endl;
+	cout << "RNL: " << Tree->toString("RNL") << endl;
 	cout << "LRN: " << Tree->toString("LRN") << endl;
-	cout << "NLR: " << Tree->toString("NLR") << endl;
 	cout << "RLN: " << Tree->toString("RLN") << endl;
+	cout << "NLR: " << Tree->toString("NLR") << endl;
+	cout << "NRL: " << Tree->toString("NRL") << endl;
 	
 	cout << endl;
 	cout << "\\------------------------------------------------------------/" << endl;

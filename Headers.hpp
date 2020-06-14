@@ -6,3 +6,6 @@
 #include "DynamicArray.hpp"
 #include "ListSequence.hpp"
 #include "LinkedList.hpp"
+#include <string>
+
+using namespace std;

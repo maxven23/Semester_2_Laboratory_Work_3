@@ -23,6 +23,10 @@ public:
 		}
 	};
 
+	ListSequence(T* items, int count) {
+		this->items = new LinkedList<T>(items, count);
+	};
+
 	ListSequence(const ListSequence<T>& list) {
 		this->size = list.size;
 		this->items = new LinkedList<T>(list.GetSize());
@@ -66,7 +70,7 @@ public:
 	};
 
 	// Добавление элемента по индексу
-	virtual void InsertAt(T item, int index) override {
+	virtual void Insert(int index, T item) override {
 		this->items->InsertAt(item, index);
 		++this->size;
 	};
@@ -116,6 +120,7 @@ public:
 		for (int i = 0; i < this->GetSize() + toConcat->GetSize(); i++) {
 			tempList->Prepend(temp[i]);
 		}
+		return tempList;
 	};
 
 	// Получение подпослед. по индексам
@@ -133,10 +138,11 @@ public:
 	// Копирование послед.
 	virtual Sequence<T>* Copy() override {
 		ListSequence<T>* copy;
-		copy = new ListSequence();
+		copy = new ListSequence<T>();
 		for (int i = 0; i < this->size; i++) {
 			copy->items->Prepend(this->Get(i));
 		}
+		return copy;
 	};
 
 	// Деструктор

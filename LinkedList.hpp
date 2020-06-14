@@ -105,7 +105,7 @@ public:
 			while (temp->pnext != nullptr) {
 				temp = temp->pnext;
 			}
-			temp->pnext = new Node(item);
+			temp->pnext = new Node<T>(item);
 		}
 		++this->size;
 	};
@@ -166,7 +166,7 @@ public:
 			throw std::exception("INDEX ERROR: Index out of range");
 		T* temp = new T[end - start + 1];
 		LinkedList<T>* tempList;
-		tempList = LinkedList<T>();
+		tempList = new LinkedList<T>();
 		for (int i = 0; i < end - start + 1; i++) {
 			temp[i] = this->Get(i + start);
 		}

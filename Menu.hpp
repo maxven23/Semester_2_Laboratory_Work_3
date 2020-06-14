@@ -1,6 +1,7 @@
 #pragma once
 #include "Headers.hpp"
 #include "BinaryTree.hpp"
+using namespace std;
 
 void MenuText() {
 	system("cls");
@@ -219,10 +220,10 @@ void makeDes(BinaryTree<T>* Tree, int choose) {
 
 		string order;
 
-		cin >> order;
+		//cin >> order;
 
 		system("cls");
-		cout << "Your Tree in ORDER '" << order << "': " << endl;
+		//cout << "Your Tree in ORDER '" << order << "': " << endl;
 		cout << Tree->toString(order) << endl;
 		cout << endl;
 

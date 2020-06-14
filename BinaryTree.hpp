@@ -273,17 +273,42 @@ public:
 		return this->Chain(this->root, order);
 	};
 
-	// Восстановление?
-	Node<T>* refactTree(Sequence<Node<T>*>* Chain) {
 
-		for (size_t i = 0; i < Chain->GetSize(); i++) {
-			if (Chain->Get(i)->Get() == this->getRoot()->Get()) {
-				return Chain->Get(i);
+	// Восстановление дерева из списка/прошивки
+
+	Node<T>* deChain(Sequence<Node<T>*>* Chain) {
+		Sequence<Node<T>*>* listLR = new ListSequence<Node<T>*>();
+		Sequence<Node<T>*>* listN = Chain;
+		ArraySequence<bool>* listCheck = new ArraySequence<bool>(listN->GetSize());
+		
+		for (int i = 0; i < listN->GetSize(); i++) {
+			if (listN->Get(i)->left != nullptr) {
+				listLR->Prepend(listN->Get(i)->left);
+			}
+
+			if (listN->Get(i)->right != nullptr) {
+				listLR->Prepend(listN->Get(i)->right);
+			}
+
+			listCheck->Set(i, false);
+		}
+
+		for (int i = 0; i < listN->GetSize(); i++) {
+			for (int k = 0; k < listLR->GetSize(); k++) {
+				if (listLR->Get(k) == listN->Get(i)) {
+					listCheck->Set(i, true);
+				}
 			}
 		}
-		return nullptr;
-	}
 
+		for (int i = 0; i < listCheck->GetSize(); i++) {
+			if (listCheck->Get(i) == false) {
+				return listN->Get(i);
+			}
+		}
+		
+		return nullptr;
+	};
 
 
 	//---------------------------БЛОК-БАЛАНСИРОВКИ------------------------------------
@@ -579,7 +604,7 @@ public:
 		}
 		Sequence<Node<T>*>* list = this->Chain(order);
 		Sequence<Node<T>*>* out = new ListSequence<Node<T>*>();
-		for (size_t i = 0; i < list->GetSize(); i++) {
+		for (int i = 0; i < list->GetSize(); i++) {
 			if (foo(list->Get(i)->Get()) == true) {
 				out->Prepend(list->Get(i));
 			}

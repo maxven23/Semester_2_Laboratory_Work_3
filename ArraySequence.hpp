@@ -59,7 +59,7 @@ public:
 	};
 
 	// Установка / изменение элемента по индексу
-	virtual void Set(int index, T item) override {
+	void Set(int index, T item) {
 		this->items->Set(index, item);
 	};
 
