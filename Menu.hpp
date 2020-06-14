@@ -20,10 +20,32 @@ void MenuText() {
 	cout << endl;
 }
 
+void funcMenu() {
+	system("cls");
+	cout << "-------------------funcMENU-------------------" << endl;
+	cout << endl;
+	cout << "1. funcName#1" << endl;
+	cout << "2. funcName#2" << endl;
+	cout << "3. funcName#3" << endl;
+	cout << endl;
+	cout << "0. Exit" << endl;
+	cout << endl;
+	cout << "----------------------------------------------" << endl;
+	cout << endl;
+}
+
 void pressAnyButton() {
 	cout << "Press any button to continue . . ." << endl;
 	system("pause>>VOID");
 }
+
+void Example() {
+	system("cls");
+	cout << "THIS IS AN EXAMPLE OF FUNC" << endl;
+	cout << endl;
+	pressAnyButton();
+}
+
 
 template <typename T>
 void makeDes(BinaryTree<T>* Tree, int choose) {
@@ -97,10 +119,24 @@ void makeDes(BinaryTree<T>* Tree, int choose) {
 	case 4:
 	{
 		system("cls");
+		int choice;
+		while (true) {
+			funcMenu();
 
-
-
-		pressAnyButton();
+			cin >> choice;
+			if (choice == 1) {
+				Example();
+			}
+			if (choice == 2) {
+				Example();
+			}
+			if (choice == 3) {
+				Example();
+			}
+			else if (choice == 0) {
+				break;
+			}
+		}
 	}
 	break;
 
@@ -108,10 +144,24 @@ void makeDes(BinaryTree<T>* Tree, int choose) {
 	case 5:
 	{
 		system("cls");
+		int choice;
+		while (true) {
+			funcMenu();
 
-
-
-		pressAnyButton();
+			cin >> choice;
+			if (choice == 1) {
+				Example();
+			}
+			if (choice == 2) {
+				Example();
+			}
+			if (choice == 3) {
+				Example();
+			}
+			else if (choice == 0) {
+				break;
+			}
+		}
 	}
 	break;
 
@@ -119,8 +169,24 @@ void makeDes(BinaryTree<T>* Tree, int choose) {
 	case 6:
 	{
 		system("cls");
+		int choice;
+		while (true) {
+			funcMenu();
 
-		pressAnyButton();
+			cin >> choice;
+			if (choice == 1) {
+				Example();
+			}
+			if (choice == 2) {
+				Example();
+			}
+			if (choice == 3) {
+				Example();
+			}
+			else if (choice == 0) {
+				break;
+			}
+		}
 	}
 	break;
 

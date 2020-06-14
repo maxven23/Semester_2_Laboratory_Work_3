@@ -273,7 +273,19 @@ public:
 		return this->Chain(this->root, order);
 	};
 
-	
+	// Восстановление?
+	Node<T>* refactTree(Sequence<Node<T>*>* Chain) {
+
+		for (size_t i = 0; i < Chain->GetSize(); i++) {
+			if (Chain->Get(i)->Get() == this->getRoot()->Get()) {
+				return Chain->Get(i);
+			}
+		}
+		return nullptr;
+	}
+
+
+
 	//---------------------------БЛОК-БАЛАНСИРОВКИ------------------------------------
 	// Балансировка Day–Stout–Warren
 	void DSW() {
